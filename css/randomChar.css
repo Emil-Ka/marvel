@@ -1,0 +1,73 @@
+.randomchar {
+  display: flex;
+}
+
+.dynamic {
+  display: flex;
+  max-width: 550px;
+  min-height: 250px;
+  padding: 35px;
+  background: #FFFFFF;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+}
+.dynamic__img {
+  width: 180px;
+  height: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 30px;
+}
+.dynamic__title {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+.dynamic__desc {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 13px;
+}
+.dynamic__btns {
+  display: flex;
+}
+.dynamic__btns a {
+  display: block;
+}
+.dynamic__btns a:nth-child(1) {
+  margin-right: 30px;
+}
+
+.static {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+  background: #232222;
+  padding: 35px;
+  position: relative;
+  max-width: 585px;
+  width: 100%;
+  min-height: 250px;
+}
+.static__title {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #fff;
+  margin-bottom: 41px;
+}
+.static__desc {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #fff;
+  margin-bottom: 13px;
+}
+.static__img {
+  position: absolute;
+  bottom: 14px;
+  right: -37px;
+}
+.static .button {
+  display: block;
+  width: 101px;
+}

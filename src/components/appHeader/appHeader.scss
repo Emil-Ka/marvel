@@ -1,0 +1,40 @@
+@import '../../style/var.scss';
+
+.header {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 50px;
+
+   &__title {
+      font-weight: bold;
+      font-size: 28px;
+      line-height: 33px;
+      color: #000;
+
+      span {
+         color: $red;
+      }
+   }
+
+   &__nav {
+      ul {
+         font-weight: bold;
+         font-size: 24px;
+         line-height: 28px;
+         color: #000000;
+         display: flex;
+         justify-content: space-between;
+      }
+
+      li {
+         margin: 0 5px;
+      }
+   }
+
+   &__link {
+      color: #000000;
+      &:hover {
+         color: $red;
+      }
+   }
+}
