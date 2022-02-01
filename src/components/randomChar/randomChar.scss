@@ -2,12 +2,13 @@
 
 .randomchar {
    display: flex;
+   padding-top: 50px;
 }
 
 .dynamic {
    display: flex;
    max-width: 550px;
-   min-height: 250px;
+   max-height: 250px;
    padding: 35px;
    background: #FFFFFF;
    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
@@ -53,9 +54,9 @@
    background: $dark;
    padding: 35px;
    position: relative;
-   max-width: 585px;
+   max-width: 550px;
    width: 100%;
-   min-height: 250px;
+   max-height: 250px;
 
    &__title {
       font-weight: bold;

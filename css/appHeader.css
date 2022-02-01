@@ -1,7 +1,6 @@
 .header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
 }
 .header__title {
   font-weight: bold;
