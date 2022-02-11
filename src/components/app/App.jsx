@@ -6,36 +6,34 @@ import CharList from '../charList/CharList';
 import CharInfo from '../charInfo/CharInfo';
 import Skeleton from '../skeleton/Skeleton';
 import ErrorBoundery from '../errorBoundery/ErrorBoundery';
+import AppBanner from '../appBanner/AppBanner'
 
-import {Component} from 'react';
+import {useState} from 'react';
 
-class App extends Component {
+const App = () => {
 
-   state = {
-      id: null
+   const [id, setId] = useState(null)
+
+   const updateId = (id) => {
+      setId(id)
    }
 
-   updateId = (id) => {
-      this.setState({id})
-   }
-
-   render() {
-      return (
-         <div className="app">
-            <AppHeader/>
-            <main>
-               <RandomChar/>
-               <div className="char-content">
-                  <CharList updateId={this.updateId}/>
-                  <ErrorBoundery>
-                     <CharInfo charId={this.state.id}/>
-                  </ErrorBoundery>
-               </div>
-            </main>
-            <img src={vision} alt="vision" className="app__img"/>
-         </div>
-      );
-   };
+   return (
+      <div className="app">
+         <AppHeader/>
+         <AppBanner/>
+         {/* <main>
+            <RandomChar/>
+            <div className="char-content">
+               <CharList updateId={updateId}/>
+               <ErrorBoundery>
+                  <CharInfo charId={id}/>
+               </ErrorBoundery>
+            </div>
+         </main>
+         <img src={vision} alt="vision" className="app__img"/> */}
+      </div>
+   )
 }
 
 export default App;

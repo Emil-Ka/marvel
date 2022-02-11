@@ -1,103 +1,73 @@
 import './charList.scss';
 
-import React, {Component} from 'react';
-import MarvelServices from '../../services/MarvelServices';
+import useMarvelServices from '../../services/MarvelServices';
+import React, {useState, useEffect} from 'react';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
+import { clear } from '@testing-library/user-event/dist/clear';
 
-class CharList extends Component {
+const CharList = (props) => {
 
-   state = {
-      charList: [],
-      loading: true,
-      error: false,
-      newItemsLoading: false,
-      offset: 0,
-      maxItems: 1559
+   const [charList, setCharList] = useState([])
+   const [newItemsLoading, setNewItemsLoading] = useState(false)
+   const [offset, setOffset] = useState(0)
+   const [maxItems, setMaxItems] = useState(1559)
+
+   const {loading, error, getAllCharacters, clearError} = useMarvelServices()
+
+   const onRequest = (offset, initial) => {
+      initial ? setNewItemsLoading(false) : setNewItemsLoading(true)
+      clearError()
+      getAllCharacters(offset)
+         .then(res => changeCharList(res.data.results))
+
+      setOffset(offset => offset + 9)
    }
 
-   MarvelService = new MarvelServices();
-
-   onRequest = (offset) => {
-      this.MarvelService.getAllCharacters(offset)
-         .then(res => this.changeCharList(res.data.results))
-         .catch(this.changeError);
-
-      this.setState(({offset}) => ({offset: offset + 9}));
+   const addChars = () => {
+      onRequest(offset, false)
    }
 
-   onNewItemsLoading = () => {
-      this.setState({newItemsLoading: true});
+   const changeCharList = (newCharList) => {
+      setCharList([...charList, ...newCharList])
    }
 
-   addChars = () => {
-      this.onNewItemsLoading();
+   useEffect(() => {
+      onRequest(offset, true);
+   }, [])
 
-      this.onRequest(this.state.offset);
+   const itemRefs = []; //массив с узлами элементов карточек
+
+   const setRef = (element) => {
+      itemRefs.push(element); //Записываем в массив с рефами узел элеиента карточки
    }
 
-   changeCharList = (newCharList) => {
-      this.setState(({charList}) => ({
-         charList: [...charList, ...newCharList], 
-         loading: false,
-         newItemsLoading: false
-      }));
+   const onFocusItem = (id) => {
+      itemRefs.forEach(item => item.classList.remove('card--active'));
+      itemRefs[id].classList.add('card--active');
+      itemRefs[id].focus();
    }
 
-   changeError = () => {
-      this.setState({loading: false, error: true});
-   }
-
-   componentDidMount() {
-      this.onRequest(this.state.offset);
-
-      window.addEventListener('scroll', () => {
-         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
-            this.onRequest(this.state.offset);
-         }
-      })
-   }
-
-   componentWillUnmount() {
-      window.removeEventListener('scroll', () => {
-         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
-            this.onRequest(this.state.offset);
-         }
-      })
-   }
-
-   itemRefs = []; //массив с узлами элементов карточек
-
-   setRef = (element) => {
-      this.itemRefs.push(element); //Записываем в массив с рефами узел элеиента карточки
-   }
-
-   onFocusItem = (id) => {
-      this.itemRefs.forEach(item => item.classList.remove('card--active'));
-      this.itemRefs[id].classList.add('card--active');
-      this.itemRefs[id].focus();
-   }
-
-   onUpdateCharByEnter = (event, id) => {
+   const onUpdateCharByEnter = (event, id) => {
       if (event.key === 'Enter') {
-         this.props.updateId(id)
+         props.updateId(id)
       }
    }
 
-   createCharList = () => {
-      const items = this.state.charList.map((item, i) => {
+   const createCharList = () => {
+      const items = charList.map((item, i) => {
          return (
             <li 
                className="charlist__item"
                key={item.id}
                tabIndex={0}
-               ref={this.setRef}
-               onClick={() => this.onFocusItem(i)}
-               onFocus={() => this.onFocusItem(i)}
-               onKeyDown={(event) => this.onUpdateCharByEnter(event, item.id)}>
+               ref={setRef}
+               onClick={() => onFocusItem(i)}
+               onFocus={() => onFocusItem(i)}
+               onKeyDown={(event) => onUpdateCharByEnter(event, item.id)}>
                <div 
                   className="charlist__card card"
-                  onClick={() => this.props.updateId(item.id)}>
+                  onClick={() => props.updateId(item.id)}>
                   <img 
                      src={item.thumbnail.path + '.' + item.thumbnail.extension} 
                      alt={item.name} 
@@ -115,30 +85,26 @@ class CharList extends Component {
          </ul>
       );
    }
-
-   render() {
-      const {loading, error, newItemsLoading} = this.state;
-      const items = this.createCharList();
+      const items = createCharList();
 
       const errorMessage = error ? <ErrorMessage/> : null;
-      const spinner = loading ? <Spinner/> : null;
+      const spinner = loading && !newItemsLoading ? <Spinner/> : null;
       const content = !(errorMessage || spinner) ? items : null;
 
-      return (
-         <div className="charlist">
-            {spinner}
-            {errorMessage}
-            {content}
-            <button 
-               onClick={() => this.addChars()} 
-               disabled={newItemsLoading}
-               style={{'display': this.state.offset >= this.state.maxItems ? 'none' : 'block'}}
-               className="button button__main button__long">
-               <div className="inner">load more</div>
-            </button>
-         </div>
-      );
-   };
-};
+   return (
+      <div className="charlist">
+         {spinner}
+         {errorMessage}
+         {content}
+         <button 
+            onClick={() => addChars()} 
+            disabled={newItemsLoading}
+            style={{'display': offset >= maxItems ? 'none' : 'block'}}
+            className="button button__main button__long">
+            <div className="inner">load more</div>
+         </button>
+      </div>
+   )
+}
 
-export default CharList;
+export default CharList
