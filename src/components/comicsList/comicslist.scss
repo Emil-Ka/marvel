@@ -1,0 +1,33 @@
+.comicslist {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   padding-top: 50px;
+   margin-bottom: 60px;
+
+   &__card {
+      max-width: 225px;
+      margin-bottom: 57px;
+   }
+
+   &__poster {
+   }
+
+   &__title {
+      font-family: Roboto Condensed;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      margin-bottom: 5px;
+   }
+
+   &__price {
+      font-family: Roboto Condensed;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+      color: rgba(0, 0, 0, 0.6);
+   }
+}

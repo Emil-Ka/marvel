@@ -7,6 +7,7 @@ import CharInfo from '../charInfo/CharInfo';
 import Skeleton from '../skeleton/Skeleton';
 import ErrorBoundery from '../errorBoundery/ErrorBoundery';
 import AppBanner from '../appBanner/AppBanner'
+import ComicsList from '../comicsList/ComicsList'
 
 import {useState} from 'react';
 
@@ -22,6 +23,7 @@ const App = () => {
       <div className="app">
          <AppHeader/>
          <AppBanner/>
+         <ComicsList/>
          {/* <main>
             <RandomChar/>
             <div className="char-content">
