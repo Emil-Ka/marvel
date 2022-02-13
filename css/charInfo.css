@@ -3,6 +3,7 @@
   max-height: 763px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
   padding: 25px;
+  margin-top: 50px;
 }
 .charinfo__basics {
   display: flex;
@@ -12,10 +13,36 @@
   height: 150px;
   -o-object-fit: cover;
      object-fit: cover;
+  margin-right: 25px;
+  margin-bottom: 15px;
 }
 .charinfo__name {
   font-weight: bold;
   font-size: 22px;
   line-height: 26px;
   color: #000;
+  margin-bottom: 35px;
+}
+.charinfo a {
+  display: block;
+  margin-bottom: 10px;
+}
+.charinfo__desc {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+.charinfo__comics {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 10px;
+}
+.charinfo__item {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  max-width: 375px;
+  padding: 4px 10px;
+  margin-bottom: 10px;
 }

@@ -25,7 +25,7 @@ const CharList = (props) => {
    }
 
    const addChars = () => {
-      onRequest(offset, false)
+      onRequest(offset)
    }
 
    const changeCharList = (newCharList) => {

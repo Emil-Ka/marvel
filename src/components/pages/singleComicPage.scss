@@ -1,0 +1,65 @@
+.single-comic {
+   display: flex;
+   justify-content: space-between;
+   padding-top: 50px;
+
+   &__img {
+      max-width: 293px;
+      max-height: 450px;
+   }
+
+   &__title {
+      font-family: Roboto Condensed;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 26px;
+      margin-bottom: 28px;
+   }
+
+   &__desc {
+      font-family: Roboto Condensed;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+      max-width: 550px;
+      margin-bottom: 40px;
+   }
+
+   &__pages {
+      font-family: Roboto Condensed;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+      margin-bottom: 25px;
+   }
+
+   &__language {
+      font-family: Roboto Condensed;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+      margin-bottom: 25px;
+   }
+
+   &__price {
+      font-family: Roboto Condensed;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 28px;
+      color: #9F0013;
+   }
+
+   &__link {
+      font-family: Roboto Condensed;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 21px;
+      color: #000;
+   }
+}

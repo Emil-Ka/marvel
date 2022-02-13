@@ -1,40 +1,24 @@
 import './app.scss';
-import vision from '../../resources/img/vision.png';
-import AppHeader from '../appHeader/AppHeader';
-import RandomChar from '../randomChar/RandomChar';
-import CharList from '../charList/CharList';
-import CharInfo from '../charInfo/CharInfo';
-import Skeleton from '../skeleton/Skeleton';
-import ErrorBoundery from '../errorBoundery/ErrorBoundery';
-import AppBanner from '../appBanner/AppBanner'
-import ComicsList from '../comicsList/ComicsList'
 
-import {useState} from 'react';
+import AppHeader from '../appHeader/AppHeader';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+
+import {MainPage, ComicsPage, Page404, SingleComicPage} from '../pages'
 
 const App = () => {
-
-   const [id, setId] = useState(null)
-
-   const updateId = (id) => {
-      setId(id)
-   }
-
    return (
-      <div className="app">
-         <AppHeader/>
-         <AppBanner/>
-         <ComicsList/>
-         {/* <main>
-            <RandomChar/>
-            <div className="char-content">
-               <CharList updateId={updateId}/>
-               <ErrorBoundery>
-                  <CharInfo charId={id}/>
-               </ErrorBoundery>
-            </div>
-         </main>
-         <img src={vision} alt="vision" className="app__img"/> */}
-      </div>
+      <Router>
+         <div className="app">
+            <AppHeader/>
+               <main>
+                  <Routes>
+                     <Route exact path="/" element={<MainPage/>}/>
+                     <Route exact path="/comics/*" element={<ComicsPage/>}/>
+                     <Route path="*" element={<Page404/>}/>
+                  </Routes>
+               </main>
+         </div>
+      </Router>
    )
 }
 

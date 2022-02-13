@@ -9,14 +9,6 @@
   box-sizing: border-box;
 }
 
-:focus, :active {
-  outline: none;
-}
-
-a:focus, a:active {
-  outline: none;
-}
-
 nav, footer, header, aside {
   display: block;
 }
@@ -152,6 +144,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .button:hover {
   transform: translateY(-5px);
+}
+.button:disabled {
+  filter: grayscale(0.5);
 }
 
 body {

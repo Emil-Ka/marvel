@@ -8,9 +8,16 @@
    &__card {
       max-width: 225px;
       margin-bottom: 57px;
+
+      &:hover {
+         transform: translateY(-10px)
+      }
    }
 
    &__poster {
+      width: 225px;
+      height: 375px;
+      margin-bottom: 5px;
    }
 
    &__title {
@@ -20,6 +27,7 @@
       font-size: 14px;
       line-height: 16px;
       margin-bottom: 5px;
+      color: #000;
    }
 
    &__price {

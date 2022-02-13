@@ -2,8 +2,15 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 50px 0;
+  position: relative;
+}
+.app__img {
+  position: absolute;
+  bottom: 0;
+  right: -187px;
 }
 
 .char-content {
   display: flex;
+  justify-content: space-between;
 }
